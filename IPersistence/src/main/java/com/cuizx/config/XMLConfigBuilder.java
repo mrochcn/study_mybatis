@@ -14,13 +14,13 @@ import java.io.InputStream;
 import java.util.List;
 import java.util.Properties;
 
-public class XMLConfigureBuilder {
+public class XMLConfigBuilder {
 
     private Configuration configuration= new Configuration();
 
     //空的构造方法
 
-    public XMLConfigureBuilder() {
+    public XMLConfigBuilder() {
     }
 
     /**
