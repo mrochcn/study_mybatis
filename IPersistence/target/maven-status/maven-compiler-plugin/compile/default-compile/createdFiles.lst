@@ -1,1 +1,7 @@
-com/cuizx/io/Resources.class
+com\cuizx\config\XMLConfigBuilder.class
+com\cuizx\io\Resources.class
+com\cuizx\config\XMLMapperBuilder.class
+com\cuizx\pojo\MappedStatement.class
+com\cuizx\sqlsession\SqlSessionFactory.class
+com\cuizx\sqlsession\SqlSessionFactoryBuilder.class
+com\cuizx\pojo\Configuration.class
