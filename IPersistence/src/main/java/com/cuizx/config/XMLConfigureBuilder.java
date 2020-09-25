@@ -1,5 +1,6 @@
 package com.cuizx.config;
 
+import com.cuizx.io.Resources;
 import com.cuizx.pojo.Configuration;
 import com.mchange.v2.c3p0.ComboPooledDataSource;
 import org.dom4j.Document;
@@ -17,9 +18,18 @@ public class XMLConfigureBuilder {
 
     private Configuration configuration= new Configuration();
 
+    //空的构造方法
+
     public XMLConfigureBuilder() {
     }
 
+    /**
+     * 从inputStream输入sqlMapConfig然后解析
+     * @param inputStream
+     * @return
+     * @throws DocumentException
+     * @throws PropertyVetoException
+     */
     public Configuration parseConfigure(InputStream inputStream) throws DocumentException, PropertyVetoException {
         Document document = new SAXReader().read(inputStream);
         //configuration
@@ -44,10 +54,11 @@ public class XMLConfigureBuilder {
         //mapper.xml解析;从sqlMapConfig中拿到路径
         List<Element> mapperList = rootElement.selectNodes("//mapper");
         for (Element element : mapperList) {
-
+            String mapperPath = element.attributeValue("resource");
+            InputStream resourceAsStream = Resources.getResourceAsStream(mapperPath);
+            XMLMapperBuilder xmlMapperBuilder = new XMLMapperBuilder(configuration);
+            xmlMapperBuilder.parse(resourceAsStream);
         }
-
-
 
         return configuration;
     }
